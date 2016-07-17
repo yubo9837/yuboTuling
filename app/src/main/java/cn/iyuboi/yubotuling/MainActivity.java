@@ -37,6 +37,25 @@ public class MainActivity extends Activity implements HttpGetDataListener,OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
+        swipeView.setColorSchemeResources(android.R.color.holo_purple, android.R.color.holo_blue_bright, android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+     //   swipeView.setOnRefreshListener(this);
+        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                /*
+                new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                   initView();
+                }
+            }, 3000);
+                */
+            initView();
+            }
+        });
     }
 
     private void initView(){
