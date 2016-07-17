@@ -70,7 +70,12 @@ public class MainActivity extends Activity implements HttpGetDataListener,OnClic
         ListData listData;
         listData=new ListData(getRandWelcomeTips(),ListData.RECEIVE,getTime());
         lists.add(listData);
-        mSwipeRefreshLayout.setRefreshing(false);
+        mSwipeRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
 
     @Override
