@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">yuboTuling</string>
+
+    <string-array name="welcome_tips">
+        <item>近来可好啊</item>
+        <item>你好啊</item>
+        <item>想死你了</item>
+        <item>机器人为您服务</item>
+    </string-array>
+</resources>
