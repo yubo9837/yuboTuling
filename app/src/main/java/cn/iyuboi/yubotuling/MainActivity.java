@@ -31,18 +31,17 @@ public class MainActivity extends Activity implements HttpGetDataListener,OnClic
     private TextAdapter adapter;
     private String []welcome_array;
     private double currentTime,oldTime=0;
-
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
-        final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
-        swipeView.setColorSchemeResources(android.R.color.holo_purple, android.R.color.holo_blue_bright, android.R.color.holo_orange_light,
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_purple, android.R.color.holo_blue_bright, android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
      //   swipeView.setOnRefreshListener(this);
-        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 /*
@@ -57,6 +56,7 @@ public class MainActivity extends Activity implements HttpGetDataListener,OnClic
             initView();
             }
         });
+        initView();
     }
 
     private void initView(){
@@ -70,6 +70,7 @@ public class MainActivity extends Activity implements HttpGetDataListener,OnClic
         ListData listData;
         listData=new ListData(getRandWelcomeTips(),ListData.RECEIVE,getTime());
         lists.add(listData);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
